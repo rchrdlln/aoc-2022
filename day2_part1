@@ -1,0 +1,48 @@
+left = ["A", "B", "C"]
+right = ["X", "Y", "Z"]
+
+total = 0
+
+def scoring(x):
+  scorelist = [("A",1),("B",2),("C",3),("X",0),("Y",3),("Z",6)]
+  answer = 0
+  for i in range(len(scorelist)):
+    if scorelist[i][0] == x:
+      answer = scorelist[i][1]
+  return(answer)
+
+with open("day2.txt") as f:
+  for line in f:
+    score = 0
+    l = line[0]
+    result = line[2]
+    r = ""
+    if l == "A":
+      if result == "X":
+        r = "C"
+      if result == "Y":
+        r = "A"
+      if result == "Z":
+        r = "B"
+
+    elif l == "B":
+      if result == "X":
+        r = "A"
+      if result == "Y":
+        r = "B"
+      if result == "Z":
+        r = "C"
+
+    elif l == "C":
+      if result == "X":
+        r = "B"
+      if result == "Y":
+        r = "C"
+      if result == "Z":
+        r = "A"
+    
+    score = scoring(r) + scoring(result)
+    
+    total += score
+
+print(total)
